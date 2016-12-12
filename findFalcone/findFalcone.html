@@ -1,0 +1,135 @@
+<div ng-controller="FindFalconeCtrl as FindFalconeCtrlvm" ng-init="FindFalconeCtrlvm.init()">
+    <div ng-if="FindFalconeCtrlvm.loadingFlag >=3">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel ">
+                        <div class="panel-heading darkGradient">
+                            <h3 class="panel-title"><strong>Planets and Space Vehicles Details</strong></h3>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table">
+                                <thead class="darkGradient">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Planet Name</th>
+                                        <th>Distance</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="planet in FindFalconeCtrlvm.planets track by $index">
+                                        <th scope="row">{{$index+1}}</th>
+                                        <td>{{planet.name}}</td>
+                                        <td>{{planet.distance}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <table class="table">
+                                <thead class="darkGradient">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Space Vehicle</th>
+                                        <th>Max Distance</th>
+                                        <th>Speed</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="vehicle in FindFalconeCtrlvm.vehicles track by $index">
+                                        <th scope="row">{{$index+1}}</th>
+                                        <td>{{vehicle.name}}</td>
+                                        <td>{{vehicle.max_distance}}</td>
+                                        <td>{{vehicle.speed}}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel ">
+                        <div class="panel-body">
+
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <button class="btn  btn-lg btn-block darkGradient" ng-click="FindFalconeCtrlvm.resetFunction()" style="color:orange"><strong>Reset Finding Falcone</strong></button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <br/>
+                                    <button type="button" class="btn  btn-lg btn-block darkGradient" ng-click="FindFalconeCtrlvm.findQueen()" ng-disabled="FindFalconeCtrlvm.findButtonFlag < FindFalconeCtrlvm.vehicles.length" style="color:orange"><strong>Find Falcone...!!!</strong></button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+
+                    <div class="row">
+                        <div class="panel ">
+                            <div class="panel-heading darkGradient">
+                                <h3 class="panel-title"><strong>Select planets Al Falcone might be hiding in</strong></h3>
+                            </div>
+
+                            <div class="panel-body " >
+                                <!-- Basic panel example -->
+                                <div class="form-group col-md-3" ng-repeat="planetIndex in FindFalconeCtrlvm.range()">
+                                    <img id="planetImage{{planetIndex}}" src="assets/images/questionmark.svg" alt="No Image" class="img-thumbnail  planetThumbnail" >
+                                    <select class="form-control" ng-model="FindFalconeCtrlvm.planetsList[planetIndex]" ng-options="planet.name disable when (planet.name|disablePlanet:FindFalconeCtrlvm.planetsSelected:planetIndex) for planet in FindFalconeCtrlvm.planets " ng-change="FindFalconeCtrlvm.planetChange($index,planetIndex,FindFalconeCtrlvm.planetsList[planetIndex])">
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="panel " ng-if="FindFalconeCtrlvm.planetsList != undefined || FindFalconeCtrlvm.planetsList != null">
+                            <div class="panel-heading darkGradient">
+                                <h1 class="panel-title">
+                                    <strong>Select the space vehicles available at King Shan’s disposal
+                                    <span style="background:orange;color:#2e2e2e" class="badge pull-right" >Total Time Taken:{{FindFalconeCtrlvm.timeTaken}}</span>
+                                  </strong>
+                                </h1>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-3" ng-repeat="vehicleIndex in FindFalconeCtrlvm.range()">
+                                    <div class="panel " ng-show="FindFalconeCtrlvm.planetsList[vehicleIndex] != null">
+                                        <div class="panel-heading darkGradient">
+                                            <h3 class="panel-title"><strong>{{FindFalconeCtrlvm.planetsList[vehicleIndex].name}}</strong>
+                                                <span style="background:orange;color:#2e2e2e" class="badge pull-right" ng-show="FindFalconeCtrlvm.selectedVehicles[vehicleIndex].timeTaken">{{FindFalconeCtrlvm.selectedVehicles[vehicleIndex].timeTaken}}</span>
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12" style="padding-left:0px;padding-right:0px">
+                                                <img id="vehicleImage2{{vehicleIndex}}" src="assets/images/questionmark.svg" alt="No Image" class="img-thumbnail  " style="width:100%;height:150px;">
+                                                <div ng-repeat="vehicle in FindFalconeCtrlvm.vehicles track by $index">
+                                                    <label>
+                                                    <input type="radio" id= "" ng-model="FindFalconeCtrlvm.vehiclesList[vehicleIndex]" ng-value="vehicle" ng-change='FindFalconeCtrlvm.vehicleChange(FindFalconeCtrlvm.vehiclesList[vehicleIndex],$index,vehicleIndex)' ng-disabled = "vehicle.total_no === 0 || vehicle.max_distance < FindFalconeCtrlvm.planetsList[vehicleIndex].distance">   {{vehicle.name}} ({{vehicle.total_no}})
+                                                  </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="col-xs-12 darkGradient " style="height:60px"><strong class="pull-right " style="color:orange">- Created by: Santosh</strong></footer>
+    </div>
+
+    <div ng-show="FindFalconeCtrlvm.loadingFlag<3" class = "centerLoading">
+        <img src="assets/images/loading.svg" alt="Image Not Found">
+    </div>
+
+</div>

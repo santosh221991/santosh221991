@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="shortcut icon" href="assets/images/falcon.png" />
+    <script type="text/javascript" src="js/dependencies/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/dependencies/angular.min.js"></script>
+    <script type="text/javascript" src="js/dependencies/angular-route.min.js"></script>
+    <script type="text/javascript" src="js/dependencies/angular-animate.min.js"></script>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+
+
+    <title>Finding Falcone</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="col-md-4 col-xs-8 navbar-header">
+                <a class="navbar-brand" style="color:orange"> 
+                    <img alt="Brand" src="assets/images/falcon.png" class="img-circle" style="width:20px;height:20px;background:orange;float:inherit"> <strong>Finding Falcone</strong>
+                </a>
+            </div>
+            <div class="col-md-2 col-md-offset-6 col-xs-2  col-xs-offset-2 ">
+            <a href = "#" class=" navbar-text pull-right" style="color:orange">About/Help</a></div>
+        </div>
+    </nav>
+    <div class="container-fluid  " role="main" id="" ng-view></div>
+
+    <script type="text/javascript" src="js/application/filters.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="js/application/routes.js"></script>
+
+    <script type="text/javascript" src="findFalcone/findFalcone.js"></script>
+    <script type="text/javascript" src="resultFalcone/resultFalcone.js"></script>
+    <script type="text/javascript" src="homeFalcone/homeFalcone.js"></script>
+</body>
+
+</html>
