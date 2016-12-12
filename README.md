@@ -3,8 +3,9 @@
 <b>Description</b>
 Find Falcone Game :Help King Shan find Al Falcone. Select 4 planets and 4 space vehicles - Then try your luck.
 
-The game can be played by clicking the following URL:
-<h1>https://santosh221991.github.io</h1>
+The game can be played by clicking on one of the following URLs:
+<h3>http://findfalcone-santosh1991.rhcloud.com</h3>
+<h3>https://santosh221991.github.io</h3>
 
 <h1>Setting up the Game Locally:</h1>
 1. Download the zip file.
